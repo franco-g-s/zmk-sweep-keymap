@@ -12,8 +12,8 @@
 
 #define CMK 0
 #define QWR 1
-#define RIG 2
-#define LEF 3
+#define LEF 2
+#define RIG 3
 #define TRI 4
 
 / {
@@ -74,34 +74,34 @@
             >;
         };
 
-        right_layer {
+        left_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮        ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ 1        │  2       │  3       │  4       │  5       │        │ 6        │ 7        │ 8        │ 9        │   0      │
-            &kp N1    &kp N2     &kp N3     &kp N4     &kp N5               &kp N6     &kp N7     &kp N8     &kp N9      &kp N0
+        //│ ESC      │          │  UP      │          │          │        │          │ 7        │ 8        │ 9        │          │
+            &kp ESC    &trans    &kp UARW     &trans     &trans              &trans    &kp N7     &kp N8     &kp N9      &trans 
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ DELETE   │ CapsLock │ PrintSc  │  INSERT  │          |        |          │ LEFT     │ DOWN     │ UP       │ RIGHT    │
-            &kp DEL   &kp CAPS   &kp PSCRN  &kp INS     &trans               &trans    &kp LARW   &kp DARW   &kp UARW   &kp RARW 
+        //│ CapsLock │ LEFT     │ DOWN     │ RIGHT    │          |        |          │ 4        │ 5        │ 6        │  0       │
+            &kp CAPS   &kp LARW   &kp DARW  &kp RARW    &trans              &trans    &kp N4      &kp N5      &kp N6    &kp N0 
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │        │          │ HOME     │ PAGE DN  │ PAGE UP  │ END      │
-            &trans    &trans     &trans     &trans      &trans                &trans     &kp HOME   &kp PG_DN  &kp PG_UP  &kp END 
+        //│          │          │          │          │          │        │          │ 1        │ 2        │ 3        │          │
+            &trans    &trans     &trans     &trans      &trans              &trans     &kp N1     &kp N2     &kp N3     &trans 
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &kp ESC             &trans     &trans
+                                             &trans     &trans              &trans     &trans
         //                                 ╰──────────┴──────────╯        ╰──────────┴──────────╯
             >;
         };
 
-        left_layer {
+        right_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮        ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│  !       │  @       │  #       │  $       │  %       │        │  ^       │  &       │  *       │  `       │  ~       │
-            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT           &kp CARET  &kp AMPS   &kp ASTRK  &kp GRAVE   &kp TILDE
+        //│  !       │  @       │  #       │  $       │  %       │        │  ^       │  &       │  *       │  -       │  =       │
+            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT           &kp CARET  &kp AMPS   &kp ASTRK  &kp MINUS  &kp EQUAL
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  "       │  [       │  {       │  (       │          │        │   /      │  -       │  =       │     :    │  ;       │
-            &kp DQT  &kp LBKT   &kp LBRC   &kp LPAR   &trans              &kp FSLH   &kp MINUS  &kp EQUAL  &kp COLON   &kp SEMI
+        //│  \       │          │  [       │  ]       │          │        │          │   (      │  )       │          │  '       │
+            &kp BSLH   &trans     &kp LBKT   &kp RBKT   &trans              &trans    &kp LPAR   &kp RPAR   &trans      &kp SQT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│  '       │  ]       │  }       │  )       │          │        │    \     │  _       │  +       │  │       │   ?      │
-            &kp SQT     &kp RBKT   &kp RBRC   &kp RPAR   &trans              &kp BSLH   &kp UNDER  &kp PLUS   &kp PIPE  &kp QMARK
+        //│          │          │          │          │          │        │          │          │          │          │          │
+            &trans     &trans      &trans     &trans     &trans             &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans              &trans     &trans
         //                                 ╰──────────┴──────────╯        ╰──────────┴──────────╯
@@ -110,18 +110,18 @@
 
         tri_layer {
             bindings = <
-        //╭──────────┬──────────┬──────────┬───────────┬────────────╮        ╭────────────┬────────────┬──────────┬───────────┬──────────╮
-        //│  F1      │  F2      │  F3      │  F4       │ PROFILE 0  │        │ PROFILE 2  │ TOGGLEOUT  │ QWERTY   │ VOL MUTE  │ NEXTSONG │
-            &kp F1     &kp F2     &kp F3     &kp F4     &bt BT_SEL 0          &bt BT_SEL 2  &out OUT_TOG &tog QWR  &kp C_MUTE  &kp C_NEXT
-        //├──────────┼──────────┼──────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┼───────────┼──────────┤
-        //│  F5      │  F6      │  F7      │  F8       │ PROFILE 1  │        │ PROFILE 3  │ INC BRIGHT │          │  VOL UP   │PAUSEMUSIC│
-            &kp F5     &kp F6     &kp F7     &kp F8     &bt BT_SEL 1          &bt BT_SEL 3  &kp C_BRI_UP  &trans   &kp C_VOL_UP  &kp C_PP
-        //├──────────┼──────────┼──────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┼───────────┼──────────┤
-        //│  F9      │  F10     │  F11     │  F12      │  CLEAR BT  │        │ PROFILE 4  │ DEC BRIGHT │          |  VOL DOWN │ PREVSONG │
-            &kp F9     &kp F10    &kp F11    &kp F12     &bt BT_CLR           &bt BT_SEL 4  &kp C_BRI_DEC  &trans   &kp C_VOL_DN &kp C_PREV
-        //╰──────────┴──────────┴──────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┴───────────┴──────────╯
-                                                &trans     &trans              &trans     &trans
-        //                                    ╰──────────┴──────────╯        ╰──────────┴────────────╯
+        //╭───────────┬───────────┬───────────┬───────────┬────────────╮        ╭────────────┬────────────┬──────────┬───────────┬──────────╮
+        //│  QWERTY   │ PREVIOUS  │ PAUSE     │ NEXT      │ VOL UP     │        │ INC BRIGHT │ F9         │ F10      │ F11       │ F12      │
+            &tog QWR    &kp C_PREV  &kp C_PP    &kp C_NEXT  &kp C_VOL_UP         &kp C_BRI_UP  &kp F9       &kp F10    &kp F11     &kp F12
+        //├───────────┼───────────┼───────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┼───────────┼──────────┤
+        //│ PROFILE 0 │ PROFILE 1 │ PROFILE 2 │ PROFILE 3 │ VOL DOWN   │        │ DEC BRIGHT │  F5        │ F6       │ F7        │ F8       │
+            &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp C_VOL_DN     &kp C_BRI_DEC  &kp F5      &kp F6     &kp F7      &kp F8
+        //├───────────┼───────────┼───────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┼───────────┼──────────┤
+        //│           │           │           │           │ VOL MUTE   │        │            │ F1         │ F2       | F3        │ F4       │
+            &trans       &trans     &trans      &trans      &kp C_MUTE            &trans       &kp F1       &kp F2    &kp F3       &kp F4
+        //╰───────────┴───────────┴───────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┴───────────┴──────────╯
+                                                  &trans     &trans              &trans     &trans
+        //                                       ╰──────────┴──────────╯        ╰──────────┴────────────╯
             >;
         };
     };
