@@ -7,8 +7,8 @@
 #include <dt-bindings/zmk/outputs.h>
 
 // Home row mods macro
-#define HRML(k2,k3,k4) &ht LCTRL k2  &ht LALT k3  &ht LGUI k4
-#define HRMR(k1,k2,k3) &ht RGUI k1  &ht RALT k2  &ht RCTRL k3
+#define HRML(k1,k2,k3,k4) &ht SHIFT k1  &ht LCTRL k2  &ht LALT k3  &ht LGUI k4
+#define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RALT k2  &ht RCTRL k3  &ht SHIFT k4
 
 #define CMK 0
 #define QWR 1
@@ -92,12 +92,12 @@
             &kp Q      &kp W      &kp F      &kp P      &kp G               &kp J      &kp L      &kp U      &kp Y      &kp SEMI
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  A       │  R       │  S       │  T       │  D       │        │  H       │  N       │  E       │  I       │  O       │
-            &kp A     HRML(R,         S,         T)     &kp D               &kp H      HRMR(N,        E,           I)   &kp O
+        	HRML(A,		R,         S,         T)     	&kp D               &kp H      HRMR(N,     E,	      I,		 O)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  Z       │  X       │  C       │  V       │  B       │        │  K       │  M       │ , <      │ . >      │  /       │
             &kp Z      &kp X      &kp C      &kp V      &kp B               &kp K      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                         &lt LEF TAB  &mt LSHIFT BSPC   &mt RSHIFT SPACE  &lt RIG ENTER
+                                         &lt LEF TAB  &mt LSHIFT BSPC      &kp SPACE  &lt RIG ENTER
         //                                 ╰──────────┴──────────╯        ╰──────────┴──────────╯
             >;
         };
@@ -109,7 +109,7 @@
             &kp Q      &kp W      &kp E      &kp R      &kp T               &kp Y      &kp U      &kp I      &kp O      &kp P
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  A       │  S       │  D       │  F       │  G       │        │  H       │  J       │  K       │  L       │  ;       │
-            &kp A     HRML(S,         D,         F)     &kp G               &kp H       HRMR(J,        K,         L)   &kp SEMI
+            HRML(A, 	S,         D,         F)     	&kp G               &kp H      HRMR(J,        K,         L, 	 SEMI)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  Z       │  X       │  C       │  V       │  B       │        │  N       │  M       │ , <      │ . >      │  /       │
             &kp Z      &kp X      &kp C      &kp V      &kp B               &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
