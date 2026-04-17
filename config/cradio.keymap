@@ -18,51 +18,43 @@
 
 / {
     macros {
-	    ulaut: ulaut {
-		    label = "Umlaut";
-		    compatible = "zmk,behavior-macro";
-		    #binding-cells = <0>;
-		    bindings
-                	= <&macro_press &kp LALT>
-                	, <&macro_tap &kp U>
-                	, <&macro_release &kp LALT>
-                	;
+        ulaut: ulaut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp U>
+                , <&macro_release &kp LALT>
+                ;
         };
         agrav: agrav {
-		        label = "AGrav";
-		        compatible = "zmk,behavior-macro";
-		        #binding-cells = <0>;
-		        bindings
-			        = <&macro_press &kp LALT>
-			        , <&macro_tap &kp GRAVE>
-			        , <&macro_release &kp LALT>
-			        ;
-                };
-
-	    aegu: aegu {
-		    label = "AEgu";
-		    compatible = "zmk,behavior-macro";
-		    #binding-cells = <0>;
-		    bindings
-			    = <&macro_press &kp LALT>
-			    , <&macro_tap &kp E>
-			    , <&macro_release &kp LALT>
-			    ;
-            };
-
-	    acirc: acirc {
-		    label = "ACirc";
-		    compatible = "zmk,behavior-macro";
-		    #binding-cells = <0>;
-		    bindings
-			    = <&macro_press &kp LALT>
-			    , <&macro_tap &kp I>
-			    , <&macro_release &kp LALT>
-			    ;
-            };
-
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp GRAVE>
+                , <&macro_release &kp LALT>
+                ;
+        };
+        aegu: aegu {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp E>
+                , <&macro_release &kp LALT>
+                ;
+        };
+        acirc: acirc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp I>
+                , <&macro_release &kp LALT>
+                ;
+        };
         atild: atild {
-            label = "ATild";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -70,18 +62,17 @@
                 , <&macro_tap &kp N>
                 , <&macro_release &kp LALT>
                 ;
-            };
         };
+    };
 
     behaviors {
         ht: hold_tap {
-            label = "hold_tap";
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
-            global-quick-tap;
+            require-prior-idle-ms = <175>;
             bindings = <&kp>, <&kp>;
         };
     };
