@@ -7,8 +7,8 @@
 #include <dt-bindings/zmk/outputs.h>
 
 // Home row mods macro
-#define HRML(k1,k2,k3,k4) &ht SHIFT k1  &ht LCTRL k2  &ht LALT k3  &ht LGUI k4
-#define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RALT k2  &ht RCTRL k3  &ht SHIFT k4
+#define HRML(k1,k2,k3,k4) &ht LSHIFT k1  &ht LCTRL k2  &ht LALT k3  &ht LGUI k4
+#define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht RALT k2  &ht RCTRL k3  &ht RSHIFT k4
 
 #define CMK 0
 #define QWR 1
@@ -18,59 +18,61 @@
 
 / {
     macros {
-	    ulaut: ulaut {
-		    label = "Umlaut";
-		    compatible = "zmk,behavior-macro";
-		    #binding-cells = <0>;
-		    bindings
-                	= <&macro_press &kp LALT>
-                	, <&macro_tap &kp U>
-                	, <&macro_release &kp LALT>
-                	;
+        ulaut: ulaut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp U>
+                , <&macro_release &kp LALT>
+                ;
         };
         agrav: agrav {
-		        label = "AGrav";
-		        compatible = "zmk,behavior-macro";
-		        #binding-cells = <0>;
-		        bindings
-			        = <&macro_press &kp LALT>
-			        , <&macro_tap &kp GRAVE>
-			        , <&macro_release &kp LALT>
-			        ;
-                };
-
-	    aegu: aegu {
-		    label = "AEgu";
-		    compatible = "zmk,behavior-macro";
-		    #binding-cells = <0>;
-		    bindings
-			    = <&macro_press &kp LALT>
-			    , <&macro_tap &kp E>
-			    , <&macro_release &kp LALT>
-			    ;
-            };
-
-	    acirc: acirc {
-		    label = "ACirc";
-		    compatible = "zmk,behavior-macro";
-		    #binding-cells = <0>;
-		    bindings
-			    = <&macro_press &kp LALT>
-			    , <&macro_tap &kp I>
-			    , <&macro_release &kp LALT>
-			    ;
-            };
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp GRAVE>
+                , <&macro_release &kp LALT>
+                ;
         };
+        aegu: aegu {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp E>
+                , <&macro_release &kp LALT>
+                ;
+        };
+        acirc: acirc {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp I>
+                , <&macro_release &kp LALT>
+                ;
+        };
+        atild: atild {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>
+                , <&macro_tap &kp N>
+                , <&macro_release &kp LALT>
+                ;
+        };
+    };
 
     behaviors {
         ht: hold_tap {
-            label = "hold_tap";
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <150>;
-            global-quick-tap;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <175>;
             bindings = <&kp>, <&kp>;
         };
     };
@@ -123,13 +125,13 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮        ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│ 1        │ 2        │ 3        │ 4        │ 5        │        │ 6        │ 7        │ 8        │ 9        │ 0        │
-            &kp N1     &kp N2     &kp N3     &kp N4     &kp N5              &kp N6     &kp N7     &kp N8     &kp N9     &kp N0 
+            &kp N1     &kp N2     &kp N3     &kp N4     &kp N5              &kp N6     &kp N7     &kp N8     &kp N9     &kp N0
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ Umlaut   │ Egu      │ Grav     │ Circ     │          |        |          │ 4        │ 5        │ 6        │  0       │
-            &ulaut     &aegu      &agrav     &acirc     &trans              &trans     &kp N4      &kp N5      &kp N6    &kp N0 
+        //│ Umlaut   │ Egu      │ Grav     │ Circ     │  ˜       |        |  =       │ 4        │ 5        │ 6        │  0       │
+            &ulaut     &aegu      &agrav     &acirc     &atild              &kp EQUAL  &kp N4     &kp N5     &kp N6     &kp N0
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │        │          │ 1        │ 2        │ 3        │          │
-            &trans    &trans     &trans     &trans      &trans              &trans     &kp N1     &kp N2     &kp N3     &trans 
+        //│          │          │          │          │          │        │  +       │ 1        │ 2        │ 3        │  -       │
+            &trans     &trans     &trans     &trans     &trans              &kp PLUS   &kp N1     &kp N2     &kp N3     &kp MINUS
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans              &trans     &trans
         //                                 ╰──────────┴──────────╯        ╰──────────┴──────────╯
@@ -139,14 +141,14 @@
         left_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮        ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│ `        │          │ UP       │          │          │        │          │ [        │ ]        │  =       │ \        │
-            &kp GRAV   &trans     &kp UARW   &trans     &trans              &trans     &kp LBKT  &kp RBKT   &kp EQUAL   &kp BSLH
+        //│          │          │ UP       │          │          │        │  `       │ [        │ ]        │  |       │ \        │
+            &trans     &trans     &kp UARW   &trans     &trans              &kp GRAVE  &kp LBKT   &kp RBKT   &kp PIPE   &kp BSLH
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ ESC      │ LEFT     │ DOWN     │ RIGHT    │          │        │          │   (      │  )       │  -       │  '       │
-            &kp ESC     &kp LARW   &kp DARW   &kp RARW   &trans              &trans    &kp LPAR    &kp RPAR  &kp MINUS   &kp SQT
+        //│ ESC      │ LEFT     │ DOWN     │ RIGHT    │          │        │  =       │   (      │  )       │  "       │  '       │
+            &kp ESC    &kp LARW   &kp DARW   &kp RARW   &trans              &kp EQUAL  &kp LPAR   &kp RPAR   &kp DQT    &kp SQT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ CAPS     │          │          │          │          │        │          │          │          │          │          │
-            &kp CAPS   &trans      &trans     &trans     &trans             &trans     &trans     &trans     &trans     &trans
+        //│ CAPS     │          │          │          │          │        │  +       │          │  <       │  >       │  -       │
+            &kp CAPS   &trans     &trans     &trans     &trans              &kp PLUS   &trans     &kp LT     &kp GT     &kp MINUS
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans              &trans     &trans
         //                                 ╰──────────┴──────────╯        ╰──────────┴──────────╯
@@ -170,4 +172,12 @@
             >;
         };
     };
+};
+
+&mt {
+    tapping-term-ms = <280>;
+};
+
+&lt {
+    tapping-term-ms = <170>;
 };
