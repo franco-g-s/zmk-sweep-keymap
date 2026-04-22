@@ -75,6 +75,15 @@
             require-prior-idle-ms = <175>;
             bindings = <&kp>, <&kp>;
         };
+        smt: space_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <400>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <175>;
+            bindings = <&kp>, <&kp>;
+        };
     };
 
     conditional_layers {
@@ -99,7 +108,7 @@
         //│  Z       │  X       │  C       │  V       │  B       │        │  K       │  M       │ , <      │ . >      │  /       │
             &kp Z      &kp X      &kp C      &kp V      &kp B               &kp K      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                         &lt LEF TAB  &mt LSHIFT BSPC      &kp SPACE  &lt RIG ENTER
+                                         &lt LEF TAB  &mt LSHIFT BSPC      &smt LSHIFT SPACE  &lt RIG ENTER
         //                                 ╰──────────┴──────────╯        ╰──────────┴──────────╯
             >;
         };
@@ -116,7 +125,7 @@
         //│  Z       │  X       │  C       │  V       │  B       │        │  N       │  M       │ , <      │ . >      │  /       │
             &kp Z      &kp X      &kp C      &kp V      &kp B               &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                           &lt LEF TAB  &mt LSHIFT BSPC    &kp SPACE  &lt RIG ENTER
+                                           &lt LEF TAB  &mt LSHIFT BSPC    &smt LSHIFT SPACE  &lt RIG ENTER
         //                                 ╰──────────┴──────────╯        ╰──────────┴──────────╯
             >;
         };
@@ -141,11 +150,11 @@
         left_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮        ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │          │ UP       │          │          │        │  `       │ [        │ ]        │  |       │ \        │
-            &trans     &trans     &kp UARW   &trans     &trans              &kp GRAVE  &kp LBKT   &kp RBKT   &kp PIPE   &kp BSLH
+        //│          │          │ UP       │          │          │        │  `       │ [        │ ]        │  \       │  :       │
+            &trans     &trans     &kp UARW   &trans     &trans              &kp GRAVE  &kp LBKT   &kp RBKT   &kp BSLH   &kp SEMI
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│ ESC      │ LEFT     │ DOWN     │ RIGHT    │          │        │  =       │   (      │  )       │  "       │  '       │
-            &kp ESC    &kp LARW   &kp DARW   &kp RARW   &trans              &kp EQUAL  &kp LPAR   &kp RPAR   &kp DQT    &kp SQT
+        //│ ESC      │ LEFT     │ DOWN     │ RIGHT    │          │        │  "       │   (      │  )       │  =       │  '       │
+            &kp ESC    &kp LARW   &kp DARW   &kp RARW   &trans              &kp DQT    &kp LPAR   &kp RPAR   &kp EQUAL  &kp SQT
         //├──────────┼──────────┼──────────┼──────────┼──────────┤        ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ CAPS     │          │          │          │          │        │  +       │          │  <       │  >       │  -       │
             &kp CAPS   &trans     &trans     &trans     &trans              &kp PLUS   &trans     &kp LT     &kp GT     &kp MINUS
@@ -158,14 +167,14 @@
         tri_layer {
             bindings = <
         //╭───────────┬───────────┬───────────┬───────────┬────────────╮        ╭────────────┬────────────┬──────────┬───────────┬──────────╮
-        //│  QWERTY   │           │           │           │ VOL UP     │        │ INC BRIGHT │            │          │           │          │
-            &tog QWR    &trans      &trans      &trans      &kp C_VOL_UP         &kp C_BRI_UP  &trans       &trans     &trans      &trans
+        //│  QWERTY   │           │           │           │ INC BRIGHT │        │            │            │ VOL UP   │           │          │
+            &tog QWR    &trans      &trans      &trans      &kp C_BRI_UP         &trans        &trans       &kp C_VOL_UP &trans    &trans
         //├───────────┼───────────┼───────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┼───────────┼──────────┤
-        //│ PROFILE 0 │ PROFILE 1 │ PROFILE 2 │ PROFILE 3 │ VOL DOWN   │        │ DEC BRIGHT │ Previous   │ Pause    │ Next      │          │
-            &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp C_VOL_DN     &kp C_BRI_DEC  &kp C_PREV  &kp C_PP   &kp C_NEXT  &trans
+        //│ PROFILE 0 │ PROFILE 1 │ PROFILE 2 │ PROFILE 3 │ DEC BRIGHT │        │ Previous   │ Rewind     │ Pause    │ FF        │ Next     │
+            &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &kp C_BRI_DEC    &kp C_PREV  &kp C_RW    &kp C_PP   &kp C_FF    &kp C_NEXT
         //├───────────┼───────────┼───────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┼───────────┼──────────┤
-        //│           │           │           │           │ VOL MUTE   │        │            │            │          |           │          │
-            &trans       &trans     &trans      &trans      &kp C_MUTE            &trans       &trans       &trans     &trans       &trans
+        //│           │           │           │           │            │        │            │            │ VOL DOWN │           │ MUTE     │
+            &trans       &trans     &trans      &trans      &trans               &trans        &trans       &kp C_VOL_DN &trans    &kp C_MUTE
         //╰───────────┴───────────┴───────────┼───────────┼────────────┤        ├────────────┼────────────┼──────────┴───────────┴──────────╯
                                                 &trans      &trans                &trans       &trans
         //                                    ╰───────────┴────────────╯        ╰────────────┴────────────╯
